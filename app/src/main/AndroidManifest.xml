@@ -11,7 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Javamysql_application_mobile_adoptme">
-
+        <activity
+            android:name=".Auth.ui.startup.StartUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Auth.ui.login.LoginActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
