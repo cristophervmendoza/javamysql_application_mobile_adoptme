@@ -46,7 +46,7 @@ Before running this project, ensure you have the following installed:
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [Your Repository URL Here]
+    git clone https://github.com/cristophervmendoza/javamysql_application_mobile_adoptme/tree/main
     cd javamysql_application_mobile_adoptme
     ```
 2.  **Open in IDE:** Open the project in Android Studio.
