@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <attr name="colorTittle" format="reference"/>
+
+    <attr name="colorSubtittle" format="reference"/>
+
+
+    <attr name="signup" format="reference"/>
+    <attr name="reversesignup" format="reference"/>
+
+</resources>

@@ -20,8 +20,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+
+        // Opción A: Forzar modo claro
+//ForceTheme.setLightMode();
+
+        // Opción B: Forzar modo oscuro
+ForceTheme.setDarkMode();
+
+        // Opción C: Seguir el sistema
+        // ForceTheme.setSystemMode();
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -56,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-
                 Intent intent = new Intent(MainActivity.this, StartUpActivity.class);
                 startActivity(intent);
                 finish();
@@ -66,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
             public void onAnimationRepeat(Animation animation) {}
         });
 
-
         logo.startAnimation(splashAnimation);
-
     }
 }

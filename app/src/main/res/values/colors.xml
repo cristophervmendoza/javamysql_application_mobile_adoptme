@@ -339,4 +339,15 @@
     <color name="chocolate">#D2691E</color>
     <color name="tan">#D2B48C</color>
     <color name="peach">#FFDAB9</color>
+
+
+
+    <color name="travisback">#0C0C24</color>
+
+
+    <color name="input_background">#F5F5F5</color>
+
+    <color name="input_stroke">#E0E0E0</color>
+    <color name="gray_400">#E0E0E0</color>
+
 </resources>

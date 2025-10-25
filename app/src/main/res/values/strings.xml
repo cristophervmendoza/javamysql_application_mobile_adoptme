@@ -9,4 +9,11 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="protecting_your_digital_life_one_paw_fect_step_a_time">Protecting your digital life...</string></resources>
+    <string name="protecting_your_digital_life_one_paw_fect_step_a_time">Protecting your digital life...</string>
+    <string name="title_activity_users">UsersActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_messages">Messages</string>
+    <string name="title_profile">Profile</string>
+</resources>
