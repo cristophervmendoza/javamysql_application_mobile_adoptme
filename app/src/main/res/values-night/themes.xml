@@ -26,5 +26,7 @@
 
         <item name="signup">@color/navy</item>
         <item name="reversesignup">@color/brown_400</item>
+
+        <item name="grid_menu">@color/light_blue_A700</item>
     </style>
 </resources>

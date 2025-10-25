@@ -342,12 +342,14 @@
 
 
 
-    <color name="travisback">#0C0C24</color>
+    <color name="travisback">#000000</color>
 
 
     <color name="input_background">#F5F5F5</color>
 
     <color name="input_stroke">#E0E0E0</color>
     <color name="gray_400">#E0E0E0</color>
+
+    <color name="orangemenu">#FF9800</color>
 
 </resources>

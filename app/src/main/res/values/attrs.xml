@@ -10,4 +10,7 @@
     <attr name="signup" format="reference"/>
     <attr name="reversesignup" format="reference"/>
 
+
+    <attr name="grid_menu" format="reference"/>
+
 </resources>

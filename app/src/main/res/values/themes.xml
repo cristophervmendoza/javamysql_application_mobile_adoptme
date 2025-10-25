@@ -38,5 +38,8 @@
         <item name="signup">@color/brown_400</item>
         <item name="reversesignup">@color/navy</item>
 
+
+        <item name="grid_menu">@color/orangemenu</item>
+
     </style>
 </resources>
