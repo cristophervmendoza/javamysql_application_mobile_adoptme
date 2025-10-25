@@ -22,10 +22,10 @@
         android:label="@string/title_messages"
         tools:layout="@layout/fragment_messages" />
     <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.profile.ProfileFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        android:id="@+id/navigation_account"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.profile.AccountFragment"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/navigation_favorites"
         android:name="com.example.javamysql_application_mobile_adoptme.View.ui.favorites.FavoritesFragment"

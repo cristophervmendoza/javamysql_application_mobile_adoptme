@@ -10,22 +10,20 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.javamysql_application_mobile_adoptme.databinding.FragmentProfileBinding;
+import com.example.javamysql_application_mobile_adoptme.databinding.FragmentAccountBinding;
 
-public class ProfileFragment extends Fragment {
+public class AccountFragment extends Fragment {
 
-    private FragmentProfileBinding binding;
+    private FragmentAccountBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ProfileViewModel profileViewModel =
-                new ViewModelProvider(this).get(ProfileViewModel.class);
+        AccountViewModel accountViewModel =
+                new ViewModelProvider(this).get(AccountViewModel.class);
 
-        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        binding = FragmentAccountBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textProfile;
-        profileViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

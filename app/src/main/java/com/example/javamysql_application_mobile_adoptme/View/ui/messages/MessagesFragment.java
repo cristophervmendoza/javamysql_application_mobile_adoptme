@@ -24,8 +24,6 @@ public class MessagesFragment extends Fragment {
         binding = FragmentMessagesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textMessages;
-        messagesViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
