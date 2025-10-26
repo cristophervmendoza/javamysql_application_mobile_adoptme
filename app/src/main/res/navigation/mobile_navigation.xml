@@ -55,4 +55,8 @@
         android:id="@+id/accountHelpFragment"
         android:name="com.example.javamysql_application_mobile_adoptme.View.ui.account.AccountHelpFragment"
         android:label="AccountHelpFragment" />
+    <fragment
+        android:id="@+id/accountTestsFragment"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.account.AccountTestsFragment"
+        android:label="AccountTestsFragment" />
 </navigation>

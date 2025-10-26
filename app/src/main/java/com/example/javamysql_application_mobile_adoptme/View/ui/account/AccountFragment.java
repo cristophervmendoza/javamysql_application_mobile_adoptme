@@ -105,13 +105,13 @@ public class AccountFragment extends Fragment {
         });
 
 
-        // ========================= OPTION 7: DATA & ANALYTICS =========================
-        /*
-        LinearLayout optionDataAnalytics = root.findViewById(R.id.option_data_analytics);
-        optionDataAnalytics.setOnClickListener(v -> {
-            loadFragment(new DataAnalyticsFragment());
+        // ========================= OPTION 7: TESTS =========================
+
+        LinearLayout optionTests = root.findViewById(R.id.option_test);
+        optionTests.setOnClickListener(v -> {
+            NavController navController = Navigation.findNavController(v);
+            navController.navigate(R.id.accountTestsFragment);
         });
-        */
 
         // ========================= OPTION 8: HELP & SUPPORT =========================
 

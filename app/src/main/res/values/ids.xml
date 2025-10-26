@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- IDs del fragment_account_tests.xml -->
+    <item name="question_container" type="id"/>
+    <item name="start_screen" type="id"/>
+    <item name="question_layout" type="id"/>
+    <item name="results_layout" type="id"/>
+
+    <!-- IDs del test_question_layout.xml (el layout reutilizable) -->
+    <item name="question_number" type="id"/>
+    <item name="question_text" type="id"/>
+    <item name="radio_group" type="id"/>
+    <item name="radio_option_1" type="id"/>
+    <item name="radio_option_2" type="id"/>
+    <item name="radio_option_3" type="id"/>
+    <item name="radio_option_4" type="id"/>
+    <item name="btn_previous" type="id"/>
+    <item name="btn_next" type="id"/>
+</resources>

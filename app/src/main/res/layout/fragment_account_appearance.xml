@@ -13,7 +13,6 @@
         android:padding="24dp"
         android:paddingBottom="100dp">
 
-        <!-- Header con botón Back y título -->
         <LinearLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
@@ -49,7 +48,6 @@
 
         </LinearLayout>
 
-        <!-- Options Container -->
         <LinearLayout
             android:id="@+id/options_container"
             android:layout_width="0dp"
@@ -60,7 +58,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <!-- Option 1: Theme -->
             <LinearLayout
                 android:id="@+id/option_theme"
                 android:layout_width="match_parent"
@@ -105,7 +102,6 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
-            <!-- Option 2: App Language -->
             <LinearLayout
                 android:id="@+id/option_app_language"
                 android:layout_width="match_parent"

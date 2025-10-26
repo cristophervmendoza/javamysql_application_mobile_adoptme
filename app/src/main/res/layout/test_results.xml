@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp">
+
+    <ImageView
+        android:id="@+id/result_icon"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ic_dog"
+        app:tint="?attr/grid_menu"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Perfect Match!"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorOnSurface"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/result_pet_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dog"
+        android:textSize="24sp"
+        android:textColor="?attr/grid_menu"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/result_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Based on your answers, a dog would be the perfect companion for you! Dogs are loyal, energetic, and love spending time with their owners."
+        android:textSize="16sp"
+        android:textColor="?attr/colorOnSurface"
+        android:alpha="0.7"
+        android:gravity="center"
+        android:layout_marginBottom="48dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_browse_pets"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/button_login_background"
+        android:text="Browse Dogs"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/btn_retake_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retake Test"
+        android:textSize="16sp"
+        android:textColor="?attr/grid_menu"
+        android:textStyle="bold"
+        android:padding="16dp" />
+
+</LinearLayout>

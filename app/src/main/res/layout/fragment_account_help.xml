@@ -13,7 +13,6 @@
         android:padding="24dp"
         android:paddingBottom="100dp">
 
-        <!-- Header con botón Back y título -->
         <LinearLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
@@ -49,7 +48,6 @@
 
         </LinearLayout>
 
-        <!-- Options Container -->
         <LinearLayout
             android:id="@+id/options_container"
             android:layout_width="0dp"
@@ -60,7 +58,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <!-- Option 1: FAQ -->
             <LinearLayout
                 android:id="@+id/option_faq"
                 android:layout_width="match_parent"
@@ -95,7 +92,6 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
-            <!-- Option 2: Contact Support -->
             <LinearLayout
                 android:id="@+id/option_contact_support"
                 android:layout_width="match_parent"
@@ -130,7 +126,6 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
-            <!-- Option 3: Privacy Policy -->
             <LinearLayout
                 android:id="@+id/option_privacy_policy"
                 android:layout_width="match_parent"
@@ -165,7 +160,6 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
-            <!-- Option 4: Terms of Service -->
             <LinearLayout
                 android:id="@+id/option_terms_service"
                 android:layout_width="match_parent"
@@ -200,7 +194,6 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
-            <!-- Option 5: Partner -->
             <LinearLayout
                 android:id="@+id/option_partner"
                 android:layout_width="match_parent"
@@ -235,7 +228,6 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
-            <!-- Option 6: Job Vacancy -->
             <LinearLayout
                 android:id="@+id/option_job_vacancy"
                 android:layout_width="match_parent"
@@ -270,7 +262,6 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
-            <!-- Option 7: Accessibility -->
             <LinearLayout
                 android:id="@+id/option_accessibility"
                 android:layout_width="match_parent"
@@ -305,7 +296,6 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
-            <!-- Option 8: Feedback -->
             <LinearLayout
                 android:id="@+id/option_feedback"
                 android:layout_width="match_parent"
@@ -340,7 +330,6 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
-            <!-- Option 9: About us -->
             <LinearLayout
                 android:id="@+id/option_about_us"
                 android:layout_width="match_parent"
@@ -375,7 +364,6 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
-            <!-- Option 10: Rate us -->
             <LinearLayout
                 android:id="@+id/option_rate_us"
                 android:layout_width="match_parent"
@@ -410,7 +398,6 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
-            <!-- Option 11: Visit Our Website -->
             <LinearLayout
                 android:id="@+id/option_visit_website"
                 android:layout_width="match_parent"
@@ -445,7 +432,6 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
-            <!-- Option 12: Follow us on Social Media -->
             <LinearLayout
                 android:id="@+id/option_social_media"
                 android:layout_width="match_parent"
