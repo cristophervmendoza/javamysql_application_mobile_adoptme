@@ -13,6 +13,7 @@
         android:padding="24dp"
         android:paddingBottom="100dp">
 
+        <!-- Header con botón Back y título -->
         <LinearLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
@@ -36,7 +37,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Notifications"
+                android:text="Account &amp; Security"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="?attr/colorOnSurface"
@@ -48,6 +49,7 @@
 
         </LinearLayout>
 
+        <!-- Options Container -->
         <LinearLayout
             android:id="@+id/options_container"
             android:layout_width="0dp"
@@ -58,56 +60,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
+            <!-- Option 1: Biometric ID -->
             <LinearLayout
+                android:id="@+id/option_biometric_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingTop="16dp"
-                android:paddingBottom="16dp">
+                android:paddingBottom="16dp"
+                android:background="?attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Adoption Updates"
+                    android:text="Biometric ID"
                     android:textSize="16sp"
                     android:textColor="?attr/colorOnSurface" />
 
                 <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switch_adoption_updates"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    app:thumbTint="@color/white"
-                    app:trackTint="?attr/grid_menu" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?attr/colorOnSurface"
-                android:alpha="0.1" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Matching Preferences"
-                    android:textSize="16sp"
-                    android:textColor="?attr/colorOnSurface" />
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switch_matching_preferences"
+                    android:id="@+id/switch_biometric_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
@@ -122,120 +95,27 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
+            <!-- Option 2: Face ID -->
             <LinearLayout
+                android:id="@+id/option_face_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingTop="16dp"
-                android:paddingBottom="16dp">
+                android:paddingBottom="16dp"
+                android:background="?attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Favorites Updates"
+                    android:text="Face ID"
                     android:textSize="16sp"
                     android:textColor="?attr/colorOnSurface" />
 
                 <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switch_favorites_updates"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    app:thumbTint="@color/white"
-                    app:trackTint="?attr/grid_menu" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?attr/colorOnSurface"
-                android:alpha="0.1" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Security Alerts"
-                    android:textSize="16sp"
-                    android:textColor="?attr/colorOnSurface" />
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switch_security_alerts"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    app:thumbTint="@color/white"
-                    app:trackTint="?attr/grid_menu" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?attr/colorOnSurface"
-                android:alpha="0.1" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Event Reminders"
-                    android:textSize="16sp"
-                    android:textColor="?attr/colorOnSurface" />
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switch_event_reminders"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    app:thumbTint="@color/white"
-                    app:trackTint="?attr/grid_menu" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?attr/colorOnSurface"
-                android:alpha="0.1" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Shelter Updates"
-                    android:textSize="16sp"
-                    android:textColor="?attr/colorOnSurface" />
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switch_shelter_updates"
+                    android:id="@+id/switch_face_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
@@ -250,24 +130,27 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
+            <!-- Option 3: SMS Authenticator -->
             <LinearLayout
+                android:id="@+id/option_sms_authenticator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingTop="16dp"
-                android:paddingBottom="16dp">
+                android:paddingBottom="16dp"
+                android:background="?attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Community Engagement"
+                    android:text="SMS Authenticator"
                     android:textSize="16sp"
                     android:textColor="?attr/colorOnSurface" />
 
                 <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switch_community_engagement"
+                    android:id="@+id/switch_sms_authenticator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
@@ -282,29 +165,32 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
+            <!-- Option 4: Google Authenticator -->
             <LinearLayout
+                android:id="@+id/option_google_authenticator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingTop="16dp"
-                android:paddingBottom="16dp">
+                android:paddingBottom="16dp"
+                android:background="?attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="General App Updates"
+                    android:text="Google Authenticator"
                     android:textSize="16sp"
                     android:textColor="?attr/colorOnSurface" />
 
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switch_general_app_updates"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    app:thumbTint="@color/white"
-                    app:trackTint="?attr/grid_menu" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="?attr/colorOnSurface"
+                    android:alpha="0.3"
+                    android:contentDescription="Arrow" />
 
             </LinearLayout>
 
@@ -314,29 +200,32 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
+            <!-- Option 5: Change Password -->
             <LinearLayout
+                android:id="@+id/option_change_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingTop="16dp"
-                android:paddingBottom="16dp">
+                android:paddingBottom="16dp"
+                android:background="?attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Important Announcements"
+                    android:text="Change Password"
                     android:textSize="16sp"
                     android:textColor="?attr/colorOnSurface" />
 
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switch_important_announcements"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    app:thumbTint="@color/white"
-                    app:trackTint="?attr/grid_menu" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="?attr/colorOnSurface"
+                    android:alpha="0.3"
+                    android:contentDescription="Arrow" />
 
             </LinearLayout>
 
@@ -346,29 +235,150 @@
                 android:background="?attr/colorOnSurface"
                 android:alpha="0.1" />
 
+            <!-- Option 6: Device Management -->
             <LinearLayout
+                android:id="@+id/option_device_management"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
+                android:orientation="vertical"
                 android:paddingTop="16dp"
-                android:paddingBottom="16dp">
+                android:paddingBottom="16dp"
+                android:background="?attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Device Management"
+                        android:textSize="16sp"
+                        android:textColor="?attr/colorOnSurface" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="?attr/colorOnSurface"
+                        android:alpha="0.3"
+                        android:contentDescription="Arrow" />
+
+                </LinearLayout>
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="App Tips and Tutorials"
-                    android:textSize="16sp"
-                    android:textColor="?attr/colorOnSurface" />
+                    android:text="Manage your account on other devices you&apos;ve used before"
+                    android:textSize="12sp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:alpha="0.6"
+                    android:layout_marginTop="4dp" />
 
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switch_app_tips_tutorials"
-                    android:layout_width="wrap_content"
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?attr/colorOnSurface"
+                android:alpha="0.1" />
+
+            <!-- Option 7: Deactivate Account -->
+            <LinearLayout
+                android:id="@+id/option_deactivate_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:background="?attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:checked="false"
-                    app:thumbTint="@color/white"
-                    app:trackTint="?attr/grid_menu" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Deactivate Account"
+                        android:textSize="16sp"
+                        android:textColor="?attr/colorOnSurface" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="?attr/colorOnSurface"
+                        android:alpha="0.3"
+                        android:contentDescription="Arrow" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Temporarily deactivate your account. Easily reactivate when you&apos;re ready"
+                    android:textSize="12sp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:alpha="0.6"
+                    android:layout_marginTop="4dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?attr/colorOnSurface"
+                android:alpha="0.1" />
+
+            <!-- Option 8: Delete Account (Rojo) -->
+            <LinearLayout
+                android:id="@+id/option_delete_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:background="?attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Delete Account"
+                        android:textSize="16sp"
+                        android:textColor="#F44336" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="#F44336"
+                        android:alpha="0.6"
+                        android:contentDescription="Arrow" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Permanently remove your account and data associated with Goolux"
+                    android:textSize="12sp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:alpha="0.6"
+                    android:layout_marginTop="4dp" />
 
             </LinearLayout>
 

@@ -35,4 +35,24 @@
         android:id="@+id/accountProfileFragment"
         android:name="com.example.javamysql_application_mobile_adoptme.View.ui.account.AccountProfileFragment"
         android:label="AccountProfileFragment" />
+    <fragment
+        android:id="@+id/accountNotificationsFragment"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.account.AccountNotificationsFragment"
+        android:label="AccountNotificationsFragment" />
+    <fragment
+        android:id="@+id/accountPetPreferencesFragment"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.account.AccountPetPreferencesFragment"
+        android:label="AccountPetPreferencesFragment" />
+    <fragment
+        android:id="@+id/accountSecurityFragment"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.account.AccountSecurityFragment"
+        android:label="AccountSecurityFragment" />
+    <fragment
+        android:id="@+id/accountAppearanceFragment"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.account.AccountAppearanceFragment"
+        android:label="AccountAppearanceFragment" />
+    <fragment
+        android:id="@+id/accountHelpFragment"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.account.AccountHelpFragment"
+        android:label="AccountHelpFragment" />
 </navigation>

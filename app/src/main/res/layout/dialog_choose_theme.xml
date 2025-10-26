@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/dialog_background">
+
+    <!-- Título -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose Theme"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorOnSurface"
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
+
+    <!-- RadioGroup para opciones -->
+    <RadioGroup
+        android:id="@+id/radio_group_theme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- System Default -->
+        <RadioButton
+            android:id="@+id/radio_system_default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="System Default"
+            android:textSize="16sp"
+            android:textColor="?attr/colorOnSurface"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:buttonTint="?attr/grid_menu" />
+
+        <!-- Light -->
+        <RadioButton
+            android:id="@+id/radio_light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Light"
+            android:textSize="16sp"
+            android:textColor="?attr/colorOnSurface"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:checked="true"
+            android:buttonTint="?attr/grid_menu" />
+
+        <!-- Dark -->
+        <RadioButton
+            android:id="@+id/radio_dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dark"
+            android:textSize="16sp"
+            android:textColor="?attr/colorOnSurface"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:buttonTint="?attr/grid_menu" />
+
+    </RadioGroup>
+
+    <!-- Botones Cancel y OK -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textSize="16sp"
+            android:textColor="?attr/grid_menu"
+            android:textStyle="bold"
+            android:padding="12dp"
+            android:layout_marginEnd="16dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_ok"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            android:background="@drawable/button_login_background"
+            android:text="OK"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+</LinearLayout>
