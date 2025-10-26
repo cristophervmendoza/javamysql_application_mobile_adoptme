@@ -13,7 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.javamysql_application_mobile_adoptme.Auth.ui.startup.StartUpActivity;
+import com.example.javamysql_application_mobile_adoptme.Auth.login.AuthActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Opción A: Forzar modo claro
-//ForceTheme.setLightMode();
+ForceTheme.setLightMode();
 
         // Opción B: Forzar modo oscuro
-ForceTheme.setDarkMode();
+//ForceTheme.setDarkMode();
 
         // Opción C: Seguir el sistema
         // ForceTheme.setSystemMode();
@@ -70,7 +70,7 @@ ForceTheme.setDarkMode();
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent intent = new Intent(MainActivity.this, StartUpActivity.class);
+                Intent intent = new Intent(MainActivity.this, AuthActivity.class);
                 startActivity(intent);
                 finish();
             }

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Javamysql_application_mobile_adoptme">
         <activity
+            android:name=".Auth.login.AuthActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.UsersActivity"
             android:exported="false"
             android:label="@string/title_activity_users" />
