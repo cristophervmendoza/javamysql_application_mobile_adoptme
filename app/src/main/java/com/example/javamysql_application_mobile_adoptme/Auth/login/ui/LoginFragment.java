@@ -6,11 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.javamysql_application_mobile_adoptme.Auth.login.AuthActivity;
 import com.example.javamysql_application_mobile_adoptme.R;
 import com.example.javamysql_application_mobile_adoptme.View.UsersActivity;
 
@@ -21,13 +24,38 @@ public class LoginFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
+        // Referencias
         Button btnLogin = view.findViewById(R.id.btn_login);
+        TextView forgotPassword = view.findViewById(R.id.forgot_password);
+        TextView registerLink = view.findViewById(R.id.register_link);
+
+        // Botón Login
         btnLogin.setOnClickListener(v -> {
-            // Aquí va tu lógica de login
-            // Si es exitoso, ir a UsersActivity
+            // Aquí va tu lógica de login (validación, API, etc.)
             Intent intent = new Intent(getActivity(), UsersActivity.class);
             startActivity(intent);
-            getActivity().finish(); // Cerrar AuthActivity
+            if (getActivity() != null) {
+                getActivity().finish();
+            }
+        });
+
+        // Link "Forgot password?" → ir a ForgotPasswordFragment
+        forgotPassword.setOnClickListener(v -> {
+            ((AuthActivity) getActivity()).loadFragment(new ForgotPasswordFragment(), true);
+        });
+
+        // Link "Register" → ir a RegisterFragment
+        registerLink.setOnClickListener(v -> {
+            ((AuthActivity) getActivity()).loadFragment(new RegisterFragment(), false);
+        });
+
+        // **IMPORTANTE: Controlar el botón Back**
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Volver a StartUpFragment
+                ((AuthActivity) requireActivity()).loadFragment(new StartUpFragment(), false);
+            }
         });
 
         return view;

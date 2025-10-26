@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Opción A: Forzar modo claro
-ForceTheme.setLightMode();
+//ForceTheme.setLightMode();
 
         // Opción B: Forzar modo oscuro
-//ForceTheme.setDarkMode();
+ForceTheme.setDarkMode();
 
         // Opción C: Seguir el sistema
         // ForceTheme.setSystemMode();

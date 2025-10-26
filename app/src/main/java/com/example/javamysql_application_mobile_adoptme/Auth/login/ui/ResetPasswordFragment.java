@@ -1,66 +1,109 @@
 package com.example.javamysql_application_mobile_adoptme.Auth.login.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.Fragment;
 
 import com.example.javamysql_application_mobile_adoptme.R;
+import com.example.javamysql_application_mobile_adoptme.View.UsersActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ResetPasswordFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ResetPasswordFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private EditText newPasswordInput;
+    private EditText confirmPasswordInput;
+    private ImageButton toggleNewPassword;
+    private ImageButton toggleConfirmPassword;
+    private boolean isNewPasswordVisible = false;
+    private boolean isConfirmPasswordVisible = false;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ResetPasswordFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ResetPasswordFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ResetPasswordFragment newInstance(String param1, String param2) {
-        ResetPasswordFragment fragment = new ResetPasswordFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_reset_password, container, false);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reset_password, container, false);
+        // Referencias
+        ImageButton btnBack = view.findViewById(R.id.btn_back);
+        newPasswordInput = view.findViewById(R.id.new_password_input);
+        confirmPasswordInput = view.findViewById(R.id.confirm_password_input);
+        toggleNewPassword = view.findViewById(R.id.toggle_new_password);
+        toggleConfirmPassword = view.findViewById(R.id.toggle_confirm_password);
+        AppCompatButton btnSavePassword = view.findViewById(R.id.btn_save_password);
+
+        // Botón Atrás
+        btnBack.setOnClickListener(v -> {
+            if (getActivity() != null) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
+
+        // Toggle visibility New Password
+        toggleNewPassword.setOnClickListener(v -> {
+            isNewPasswordVisible = !isNewPasswordVisible;
+            if (isNewPasswordVisible) {
+                newPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT);
+                toggleNewPassword.setImageResource(R.drawable.ic_visibility);
+            } else {
+                newPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                toggleNewPassword.setImageResource(R.drawable.ic_visibility_off);
+            }
+            newPasswordInput.setSelection(newPasswordInput.getText().length());
+        });
+
+        // Toggle visibility Confirm Password
+        toggleConfirmPassword.setOnClickListener(v -> {
+            isConfirmPasswordVisible = !isConfirmPasswordVisible;
+            if (isConfirmPasswordVisible) {
+                confirmPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT);
+                toggleConfirmPassword.setImageResource(R.drawable.ic_visibility);
+            } else {
+                confirmPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                toggleConfirmPassword.setImageResource(R.drawable.ic_visibility_off);
+            }
+            confirmPasswordInput.setSelection(confirmPasswordInput.getText().length());
+        });
+
+        // Botón Save Password
+        btnSavePassword.setOnClickListener(v -> {
+            String newPassword = newPasswordInput.getText().toString().trim();
+            String confirmPassword = confirmPasswordInput.getText().toString().trim();
+
+            if (newPassword.isEmpty() || confirmPassword.isEmpty()) {
+                Toast.makeText(getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (!newPassword.equals(confirmPassword)) {
+                Toast.makeText(getContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (newPassword.length() < 6) {
+                Toast.makeText(getContext(), "Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Aquí guardas la nueva contraseña en tu backend
+            Toast.makeText(getContext(), "Password reset successfully!", Toast.LENGTH_SHORT).show();
+
+            // Ir al Login o UsersActivity
+            Intent intent = new Intent(getActivity(), UsersActivity.class);
+            startActivity(intent);
+            if (getActivity() != null) {
+                getActivity().finish();
+            }
+        });
+
+        return view;
     }
 }
