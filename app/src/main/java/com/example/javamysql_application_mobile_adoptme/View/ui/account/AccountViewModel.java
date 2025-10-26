@@ -1,4 +1,4 @@
-package com.example.javamysql_application_mobile_adoptme.View.ui.profile;
+package com.example.javamysql_application_mobile_adoptme.View.ui.account;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
