@@ -15,13 +15,12 @@ public class AuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
-        // Cargar StartUpFragment por defecto (pantalla de bienvenida)
         if (savedInstanceState == null) {
             loadFragment(new StartUpFragment(), false);
         }
     }
 
-    // Método para cambiar entre fragments
+
     public void loadFragment(Fragment fragment, boolean addToBackStack) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.auth_container, fragment);

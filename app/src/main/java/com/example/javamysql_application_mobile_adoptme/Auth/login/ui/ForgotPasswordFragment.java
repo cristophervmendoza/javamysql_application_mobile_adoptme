@@ -24,19 +24,16 @@ public class ForgotPasswordFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_forgot_password, container, false);
 
-        // Referencias
         ImageButton btnBack = view.findViewById(R.id.btn_back);
         EditText emailInput = view.findViewById(R.id.email_input);
         AppCompatButton btnSendOtp = view.findViewById(R.id.btn_send_otp);
 
-        // Botón Atrás
         btnBack.setOnClickListener(v -> {
             if (getActivity() != null) {
                 getActivity().getSupportFragmentManager().popBackStack();
             }
         });
 
-        // Botón Send OTP
         btnSendOtp.setOnClickListener(v -> {
             String email = emailInput.getText().toString().trim();
 
@@ -45,11 +42,8 @@ public class ForgotPasswordFragment extends Fragment {
                 return;
             }
 
-            // Aquí envías el OTP por email (backend)
-            // Por ahora solo navegamos a VerifyCodeFragment
             Toast.makeText(getContext(), "OTP sent to " + email, Toast.LENGTH_SHORT).show();
 
-            // Navegar a VerifyCodeFragment
             ((AuthActivity) getActivity()).loadFragment(new VerifyCodeRegFragment(), true);
         });
 

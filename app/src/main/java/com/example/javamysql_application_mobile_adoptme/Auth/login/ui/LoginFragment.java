@@ -24,14 +24,11 @@ public class LoginFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
-        // Referencias
         Button btnLogin = view.findViewById(R.id.btn_login);
         TextView forgotPassword = view.findViewById(R.id.forgot_password);
         TextView registerLink = view.findViewById(R.id.register_link);
 
-        // Botón Login
         btnLogin.setOnClickListener(v -> {
-            // Aquí va tu lógica de login (validación, API, etc.)
             Intent intent = new Intent(getActivity(), UsersActivity.class);
             startActivity(intent);
             if (getActivity() != null) {
@@ -39,21 +36,17 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        // Link "Forgot password?" → ir a ForgotPasswordFragment
         forgotPassword.setOnClickListener(v -> {
             ((AuthActivity) getActivity()).loadFragment(new ForgotPasswordFragment(), true);
         });
 
-        // Link "Register" → ir a RegisterFragment
         registerLink.setOnClickListener(v -> {
             ((AuthActivity) getActivity()).loadFragment(new RegisterFragment(), false);
         });
 
-        // **IMPORTANTE: Controlar el botón Back**
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                // Volver a StartUpFragment
                 ((AuthActivity) requireActivity()).loadFragment(new StartUpFragment(), false);
             }
         });

@@ -27,7 +27,6 @@ public class VerifyCodeRegFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_verify_code_reg, container, false);
 
-        // Referencias de OTP
         otpDigits = new EditText[]{
                 view.findViewById(R.id.otp_digit_1),
                 view.findViewById(R.id.otp_digit_2),
@@ -35,23 +34,14 @@ public class VerifyCodeRegFragment extends Fragment {
                 view.findViewById(R.id.otp_digit_4)
         };
 
-        // Botón atrás
         ImageButton btnBack = view.findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> {
             if (getActivity() != null) {
                 getActivity().getSupportFragmentManager().popBackStack();
             }
         });
-
-        // Setup teclado numérico
-
         return view;
     }
-
-
-
-
-
     private void verifyOTP() {
         StringBuilder otp = new StringBuilder();
         for (EditText digit : otpDigits) {
@@ -60,17 +50,13 @@ public class VerifyCodeRegFragment extends Fragment {
 
         String otpCode = otp.toString();
 
-        // Aquí verificas el OTP con tu backend
-        // Por ahora, simulamos que es correcto
-        if (otpCode.equals("1234")) { // Código de prueba
+        if (otpCode.equals("1234")) {
             Toast.makeText(getContext(), "OTP verified successfully!", Toast.LENGTH_SHORT).show();
 
-            // Navegar a ResetPasswordFragment
             ((AuthActivity) getActivity()).loadFragment(new ResetPasswordFragment(), true);
         } else {
             Toast.makeText(getContext(), "Invalid OTP code", Toast.LENGTH_SHORT).show();
 
-            // Limpiar campos
             for (EditText digit : otpDigits) {
                 digit.setText("");
             }

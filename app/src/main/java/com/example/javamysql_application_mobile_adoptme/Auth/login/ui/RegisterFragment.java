@@ -27,7 +27,6 @@ public class RegisterFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_register, container, false);
 
-        // Referencias
         TextInputEditText nameInput = view.findViewById(R.id.name_input);
         TextInputEditText lastnameInput = view.findViewById(R.id.lastname_input);
         TextInputEditText dniInput = view.findViewById(R.id.dni_input);
@@ -39,7 +38,6 @@ public class RegisterFragment extends Fragment {
         Button btnRegister = view.findViewById(R.id.btn_signup);
         TextView loginLink = view.findViewById(R.id.login_link);
 
-        // Botón Sign Up
         btnRegister.setOnClickListener(v -> {
             String name = nameInput.getText().toString().trim();
             String lastname = lastnameInput.getText().toString().trim();
@@ -49,7 +47,6 @@ public class RegisterFragment extends Fragment {
             String password = passwordInput.getText().toString().trim();
             String confirmPassword = confirmPasswordInput.getText().toString().trim();
 
-            // Validaciones
             if (name.isEmpty() || lastname.isEmpty() || dni.isEmpty() ||
                     email.isEmpty() || phone.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                 Toast.makeText(getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
@@ -80,16 +77,13 @@ public class RegisterFragment extends Fragment {
             }
         });
 
-        // Link "Log In" → volver a LoginFragment
         loginLink.setOnClickListener(v -> {
             ((AuthActivity) getActivity()).loadFragment(new LoginFragment(), false);
         });
 
-        // **IMPORTANTE: Controlar el botón Back**
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                // Volver a StartUpFragment
                 ((AuthActivity) requireActivity()).loadFragment(new StartUpFragment(), false);
             }
         });
