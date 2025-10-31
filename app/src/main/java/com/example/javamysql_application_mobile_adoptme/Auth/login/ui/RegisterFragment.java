@@ -1,6 +1,5 @@
 package com.example.javamysql_application_mobile_adoptme.Auth.login.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,14 +9,12 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.javamysql_application_mobile_adoptme.Auth.login.AuthActivity;
 import com.example.javamysql_application_mobile_adoptme.R;
-import com.example.javamysql_application_mobile_adoptme.View.UsersActivity;
 import com.example.javamysql_application_mobile_adoptme.data.DatabaseHelper;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -40,7 +37,7 @@ public class RegisterFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_register, container, false);
 
-        // Inicializar vistas
+
         nameInput = view.findViewById(R.id.name_input);
         lastnameInput = view.findViewById(R.id.lastname_input);
         dniInput = view.findViewById(R.id.dni_input);
@@ -52,20 +49,12 @@ public class RegisterFragment extends Fragment {
         btnRegister = view.findViewById(R.id.btn_signup);
         loginLink = view.findViewById(R.id.login_link);
 
-        // Listener del botón registro
+
         btnRegister.setOnClickListener(v -> registerUser());
 
-        // Listener del link de login
-        loginLink.setOnClickListener(v ->
-                ((AuthActivity) getActivity()).loadFragment(new LoginFragment(), false)
-        );
 
-        // Manejo del botón back
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                ((AuthActivity) requireActivity()).loadFragment(new StartUpFragment(), false);
-            }
+        loginLink.setOnClickListener(v -> {
+            ((AuthActivity) getActivity()).loadFragment(new LoginFragment(), false);
         });
 
         return view;
@@ -80,93 +69,85 @@ public class RegisterFragment extends Fragment {
         String contrasena = passwordInput.getText().toString().trim();
         String confirmar = confirmPasswordInput.getText().toString().trim();
 
-        // ========== VALIDACIONES ==========
 
-        // Verificar campos vacíos
         if (nombre.isEmpty() || apellido.isEmpty() || dni.isEmpty() || correo.isEmpty() ||
                 telefono.isEmpty() || contrasena.isEmpty() || confirmar.isEmpty()) {
             Toast.makeText(getContext(), "⚠️ Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Validar formato de correo
+
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
             emailInput.setError("Correo no válido");
             emailInput.requestFocus();
             return;
         }
 
-        // Validar DNI (8 dígitos)
+
         if (!dni.matches("\\d{8}")) {
             dniInput.setError("El DNI debe tener 8 dígitos numéricos");
             dniInput.requestFocus();
             return;
         }
 
-        // Validar teléfono (9 dígitos)
+
         if (!telefono.matches("\\d{9}")) {
             phoneInput.setError("El teléfono debe tener 9 dígitos");
             phoneInput.requestFocus();
             return;
         }
 
-        // Validar longitud de contraseña
+
         if (contrasena.length() < 6) {
             passwordInput.setError("La contraseña debe tener al menos 6 caracteres");
             passwordInput.requestFocus();
             return;
         }
 
-        // Validar complejidad de contraseña (mayúscula, minúscula, número)
+
         if (!contrasena.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).+$")) {
             passwordInput.setError("Debe tener mayúsculas, minúsculas y números");
             passwordInput.requestFocus();
             return;
         }
 
-        // Confirmar contraseñas iguales
+
         if (!contrasena.equals(confirmar)) {
             confirmPasswordInput.setError("Las contraseñas no coinciden");
             confirmPasswordInput.requestFocus();
             return;
         }
 
-        // Aceptar términos
+
         if (!termsCheckbox.isChecked()) {
             Toast.makeText(getContext(), "Debes aceptar los términos y condiciones", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // ========== GUARDAR LOCALMENTE ==========
+        //Verificar si el usuario existe localmente
         DatabaseHelper dbHelper = new DatabaseHelper(getContext());
         if (dbHelper.userExists(correo)) {
-            Toast.makeText(getContext(), "El usuario ya existe", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "El usuario ya existe localmente", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        // Guardar localmente
         boolean insertado = dbHelper.insertUser(nombre, apellido, dni, correo, telefono, contrasena);
         if (insertado) {
             Toast.makeText(getContext(), "Usuario guardado localmente ✅", Toast.LENGTH_SHORT).show();
-
             // Enviar datos al servidor remoto
             enviarRegistroServidor(nombre, apellido, dni, correo, telefono, contrasena);
-
-            // Navegar a UsersActivity
-            Intent intent = new Intent(getActivity(), UsersActivity.class);
-            startActivity(intent);
-            if (getActivity() != null) {
-                getActivity().finish();
-            }
         } else {
             Toast.makeText(getContext(), "Error al guardar localmente ❌", Toast.LENGTH_SHORT).show();
         }
     }
 
+
     private void enviarRegistroServidor(String nombre, String apellido, String dni,
                                         String correo, String telefono, String contrasena) {
         new Thread(() -> {
             try {
-                URL url = new URL("http://adoptme.atwebpages.com/registro.php");
+                URL url = new URL("https://adoptme-backendphp-emfwe5fbg5f8gpc6.chilecentral-01.azurewebsites.net/registrar_usuario.php");
 
                 String postData =
                         "nombre=" + URLEncoder.encode(nombre, "UTF-8") + "&" +
@@ -199,15 +180,16 @@ public class RegisterFragment extends Fragment {
                 reader.close();
                 conn.disconnect();
 
+
                 requireActivity().runOnUiThread(() -> {
-                    Toast.makeText(getContext(), "Registrado en servidor: " + response.toString(), Toast.LENGTH_LONG).show();
-                    limpiarCampos();
+                    Toast.makeText(getContext(), response.toString(), Toast.LENGTH_LONG).show();
+                    limpiarCampos(); //
                 });
 
             } catch (Exception e) {
                 e.printStackTrace();
                 requireActivity().runOnUiThread(() ->
-                        Toast.makeText(getContext(), "Error de conexión al servidor", Toast.LENGTH_LONG).show()
+                        Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show()
                 );
             }
         }).start();

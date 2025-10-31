@@ -127,6 +127,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="?attr/colorOnSurface"
                 android:inputType="number"
+                android:maxLength="8"
                 android:maxLines="1"
                 android:padding="16dp"
                 android:background="@drawable/input_background_rounded" />
@@ -187,6 +188,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="?attr/colorOnSurface"
                 android:inputType="phone"
+                android:maxLength="9"
                 android:maxLines="1"
                 android:padding="16dp"
                 android:background="@drawable/input_background_rounded" />

@@ -28,6 +28,10 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import android.content.SharedPreferences;
+import android.util.Log;
+
+
 
 public class LoginFragment extends Fragment {
 
@@ -46,8 +50,8 @@ public class LoginFragment extends Fragment {
         registerLink = view.findViewById(R.id.register_link);
         forgotPassword = view.findViewById(R.id.forgot_password);
 
-        btnLogin.setOnClickListener(v -> loginUser1());
-        // Si quieres usar el login real, cambia por -> loginUser();
+        btnLogin.setOnClickListener(v -> loginUser());
+
 
         registerLink.setOnClickListener(v ->
                 ((AuthActivity) getActivity()).loadFragment(new RegisterFragment(), false)
@@ -68,7 +72,7 @@ public class LoginFragment extends Fragment {
     }
 
     // Login local de prueba (admin@adoptme.com - 123456)
-    private void loginUser1() {
+    /*private void loginUser1() {
         String correo = emailInput.getText().toString().trim();
         String contrasena = passwordInput.getText().toString().trim();
 
@@ -89,9 +93,9 @@ public class LoginFragment extends Fragment {
         } else {
             Toast.makeText(getContext(), "❌ Credenciales incorrectas", Toast.LENGTH_LONG).show();
         }
-    }
+    }*/
 
-    // Login real con PHP
+
     private void loginUser() {
         String correo = emailInput.getText().toString().trim();
         String contrasena = passwordInput.getText().toString().trim();
@@ -101,15 +105,9 @@ public class LoginFragment extends Fragment {
             return;
         }
 
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
-            emailInput.setError("Correo inválido");
-            emailInput.requestFocus();
-            return;
-        }
-
         new Thread(() -> {
             try {
-                URL url = new URL("http://adoptme.atwebpages.com/login.php");
+                URL url = new URL("https://adoptme-backendphp-emfwe5fbg5f8gpc6.chilecentral-01.azurewebsites.net/login.php");
                 String postData = "correo=" + URLEncoder.encode(correo, "UTF-8") +
                         "&contrasena=" + URLEncoder.encode(contrasena, "UTF-8");
 
@@ -118,6 +116,7 @@ public class LoginFragment extends Fragment {
                 conn.setDoOutput(true);
                 conn.setConnectTimeout(10000);
                 conn.setReadTimeout(10000);
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
 
                 try (OutputStream os = conn.getOutputStream()) {
                     os.write(postData.getBytes());
@@ -140,12 +139,19 @@ public class LoginFragment extends Fragment {
                         JSONObject json = new JSONObject(jsonResponse);
 
                         if (json.has("success") && json.getBoolean("success")) {
-                            String nombre = json.optString("nombre");
-                            String apellido = json.optString("apellido");
 
-                            Toast.makeText(getContext(),
-                                    "Bienvenido, " + nombre + " " + apellido + " 🐾",
-                                    Toast.LENGTH_LONG).show();
+                            JSONObject usuario = json.getJSONObject("usuario");
+                            SharedPreferences prefs = requireActivity().getSharedPreferences("UserSession", getContext().MODE_PRIVATE);
+                            SharedPreferences.Editor editor = prefs.edit();
+                            editor.putInt("id_usuario", usuario.optInt("id_usuario"));
+                            editor.putString("nombre", usuario.optString("nombre"));
+                            editor.putString("apellido", usuario.optString("apellido"));
+                            editor.putString("correo", usuario.optString("correo"));
+                            editor.putString("dni", usuario.optString("dni"));
+                            editor.putString("telefono", usuario.optString("telefono"));
+                            editor.apply();
+
+                            Toast.makeText(getContext(), "Bienvenida, " + usuario.optString("nombre") + " 🐾", Toast.LENGTH_LONG).show();
 
                             limpiarCampos();
 
@@ -154,23 +160,25 @@ public class LoginFragment extends Fragment {
                             requireActivity().finish();
 
                         } else {
-                            String errorMsg = json.optString("error", "Credenciales incorrectas");
-                            Toast.makeText(getContext(), "❌ " + errorMsg, Toast.LENGTH_LONG).show();
+                            String errorMsg = json.optString("error", "❌ Credenciales incorrectas");
+                            Toast.makeText(getContext(), errorMsg, Toast.LENGTH_LONG).show();
                         }
 
                     } catch (JSONException e) {
-                        Toast.makeText(getContext(), "Error en respuesta del servidor", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Error al interpretar la respuesta del servidor", Toast.LENGTH_LONG).show();
                     }
                 });
 
             } catch (Exception e) {
                 e.printStackTrace();
                 requireActivity().runOnUiThread(() ->
-                        Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show()
+                        Toast.makeText(getContext(), "Error de conexión: " + e.getMessage(), Toast.LENGTH_LONG).show()
                 );
             }
         }).start();
     }
+
+
 
     private void limpiarCampos() {
         emailInput.setText("");
