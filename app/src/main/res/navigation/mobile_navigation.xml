@@ -59,4 +59,13 @@
         android:id="@+id/accountTestsFragment"
         android:name="com.example.javamysql_application_mobile_adoptme.View.ui.account.AccountTestsFragment"
         android:label="AccountTestsFragment" />
+    <fragment
+        android:id="@+id/navigation_mapa"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.account.MapaFragment"
+        android:label="@string/title_mapa"
+        tools:layout="@layout/fragment_mapa" />
+
+
+
+
 </navigation>
