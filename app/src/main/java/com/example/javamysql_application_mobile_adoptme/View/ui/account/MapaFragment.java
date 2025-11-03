@@ -59,9 +59,18 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
         mMap.addMarker(new MarkerOptions().position(SJM).title("albergue Perruno Y Gatuno Tu Mejor Amigo"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SJM, 14));
 
+        LatLng Lurin = new LatLng(-12.2399417,-77.0243495);
+        mMap.addMarker(new MarkerOptions().position(Lurin).title("Albergue Patitas"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Lurin, 14));
+
+        LatLng Pachacamac1 = new LatLng(-12.2395816,-77.0243497);
+        mMap.addMarker(new MarkerOptions().position(Pachacamac1).title("Patitas Unidas de Manchay"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Pachacamac1, 12));
+
+
         LatLng Cercado = new LatLng(-12.098855,-76.9165648);
         mMap.addMarker(new MarkerOptions().position(Cercado).title("Huellitas Felices Perú - Albergue animales"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Cercado, 14));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Cercado, 12));
 
         LatLng Surquillo = new LatLng(-12.1113334,-77.0606206);
         mMap.addMarker(new MarkerOptions().position(Surquillo).title("Salma Asociación Civil"));
@@ -70,6 +79,17 @@ public class MapaFragment extends Fragment implements OnMapReadyCallback {
         LatLng Pachacamac = new LatLng(-12.1468031,-76.8754791);
         mMap.addMarker(new MarkerOptions().position(Pachacamac).title("Refugio Animazul"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Pachacamac, 14));
+
+        LatLng PuentePiedra_Albergue = new LatLng(-11.8768, -77.0745);
+        mMap.addMarker(new MarkerOptions().position(PuentePiedra_Albergue)
+                .title("Albergue San Francisco – Puente Piedra"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Pachacamac, 14));
+
+        LatLng Ventanilla_Albergue = new LatLng(-11.8440, -77.1650);
+        mMap.addMarker(new MarkerOptions().position(Ventanilla_Albergue)
+                .title("Albergue Huellitas de Ventanilla"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Pachacamac, 14));
+
 
         if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
