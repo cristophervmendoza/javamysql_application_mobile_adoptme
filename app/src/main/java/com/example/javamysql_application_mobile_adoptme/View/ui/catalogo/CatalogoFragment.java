@@ -1,5 +1,7 @@
 package com.example.javamysql_application_mobile_adoptme.View.ui.catalogo;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,8 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import androidx.navigation.Navigation;
-import androidx.core.os.BundleKt;
+import androidx.navigation.Navigation; // Para navegar
+import androidx.navigation.fragment.NavHostFragment;
+
 
 import com.example.javamysql_application_mobile_adoptme.R;
 import com.example.javamysql_application_mobile_adoptme.adapter.MascotaAdapter;
@@ -23,7 +26,6 @@ import com.example.javamysql_application_mobile_adoptme.service.ApiCliente;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,13 +34,15 @@ public class CatalogoFragment extends Fragment implements MascotaAdapter.OnMasco
     private static final String TAG = "CATALOGO_FRAG";
     private RecyclerView recyclerView;
     private MascotaAdapter adapter;
+    private int currentUserId = -1; // Almacenará el ID del usuario logueado
 
     public CatalogoFragment() {
-
+        // Constructor público vacío requerido
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_catalogo, container, false);
     }
 
@@ -47,20 +51,35 @@ public class CatalogoFragment extends Fragment implements MascotaAdapter.OnMasco
         super.onViewCreated(view, savedInstanceState);
 
 
+        SharedPreferences prefs = requireActivity().getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+        currentUserId = prefs.getInt("id_usuario", -1);
+
+
         recyclerView = view.findViewById(R.id.recycler_view_catalogo);
 
 
-        adapter = new MascotaAdapter(new ArrayList<>(), this);
+        adapter = new MascotaAdapter(getContext(), new ArrayList<>(), this, currentUserId);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
-        // 2. Ejecutar la llamada a la API
+
         cargarCatalogoMascotas();
     }
 
+
+    @Override
+    public void onMascotaClick(MascotaEntidad mascota) {
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("mascota_data", mascota);
+
+
+        NavHostFragment.findNavController(this).navigate(R.id.navigation_mascota_detalle, bundle);
+    }
+
+
     private void cargarCatalogoMascotas() {
-        // ... (Tu lógica de API idéntica a la anterior) ...
         AdopcionApiService apiService = ApiCliente.getApiService();
         Call<CatalogoRespuesta> call = apiService.getCatalogoMascotas();
 
@@ -76,36 +95,25 @@ public class CatalogoFragment extends Fragment implements MascotaAdapter.OnMasco
                         adapter.setMascotas(mascotas);
                         Log.i(TAG, "Catálogo cargado. Total: " + mascotas.size());
 
+                        if (mascotas.isEmpty()) {
+                            Toast.makeText(getContext(), "No hay mascotas disponibles.", Toast.LENGTH_SHORT).show();
+                        }
+
                     } else {
-                        Log.w(TAG, "Error de la API: " + body.getMensaje());
+                        Log.w(TAG, "Error de API: " + body.getMensaje());
+                        Toast.makeText(getContext(), "Error al cargar la lista: " + body.getMensaje(), Toast.LENGTH_LONG).show();
                     }
                 } else {
                     Log.e(TAG, "Fallo HTTP: " + response.code());
+                    Toast.makeText(getContext(), "Fallo al conectar con el servidor.", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<CatalogoRespuesta> call, @NonNull Throwable t) {
                 Log.e(TAG, "Error de conexión/red: " + t.getMessage(), t);
+                Toast.makeText(getContext(), "Error de red: No se pudo cargar el catálogo.", Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-
-    @Override
-    public void onMascotaClick(MascotaEntidad mascota) {
-
-        Bundle bundle = new Bundle();
-
-
-        bundle.putSerializable("mascota_data", mascota);
-
-
-        try {
-            Navigation.findNavController(requireView()).navigate(R.id.navigation_mascota_detalle, bundle);
-        } catch (Exception e) {
-            Log.e(TAG, "Error de navegación: El destino navigation_mascota_detalle no está definido.", e);
-            Toast.makeText(getContext(), "Error: Destino de detalle no encontrado.", Toast.LENGTH_LONG).show();
-        }
     }
 }

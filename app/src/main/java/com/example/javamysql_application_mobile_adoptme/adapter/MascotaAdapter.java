@@ -1,5 +1,6 @@
 package com.example.javamysql_application_mobile_adoptme.adapter;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -10,23 +11,40 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.javamysql_application_mobile_adoptme.R;
 import com.example.javamysql_application_mobile_adoptme.model.MascotaEntidad;
+import com.example.javamysql_application_mobile_adoptme.model.BaseResponse;
+import com.example.javamysql_application_mobile_adoptme.service.AdopcionApiService;
+import com.example.javamysql_application_mobile_adoptme.service.ApiCliente;
+
 import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaViewHolder> {
 
-    // Interfaz para manejar el clic fuera del Adaptador
     private final OnMascotaClickListener clickListener;
     private List<MascotaEntidad> listaMascotas;
+    private final Context context;
+    private final int userId;
 
-    // Constructor que recibe el listener
-    public MascotaAdapter(List<MascotaEntidad> listaMascotas, OnMascotaClickListener clickListener) {
+
+    public interface OnMascotaClickListener {
+        void onMascotaClick(MascotaEntidad mascota);
+    }
+
+
+    public MascotaAdapter(Context context, List<MascotaEntidad> listaMascotas, OnMascotaClickListener clickListener, int userId) {
+        this.context = context;
         this.listaMascotas = listaMascotas;
         this.clickListener = clickListener;
+        this.userId = userId;
     }
 
     public void setMascotas(List<MascotaEntidad> nuevasMascotas) {
@@ -47,7 +65,6 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
         holder.bind(mascota);
 
 
-
         holder.btnVerMas.setOnClickListener(v -> {
             if (clickListener != null) {
                 clickListener.onMascotaClick(mascota);
@@ -56,8 +73,12 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
 
 
         holder.imgFavoriteHeart.setOnClickListener(v -> {
-            Log.d("ADAPTER_CLICK", "Clic en Favoritos para Mascota ID: " + mascota.getIdMascota());
+            toggleFavorite(mascota.getIdMascota(), holder.imgFavoriteHeart);
         });
+
+
+        holder.imgFavoriteHeart.setImageResource(R.drawable.ic_heart_outline);
+        holder.imgFavoriteHeart.setColorFilter(ContextCompat.getColor(context, android.R.color.white));
     }
 
     @Override
@@ -66,8 +87,47 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
     }
 
 
-    public interface OnMascotaClickListener {
-        void onMascotaClick(MascotaEntidad mascota);
+    private void toggleFavorite(int mascotaId, ImageView heartIcon) {
+        Log.d("FAV_DEBUG", "User ID used: " + userId + ", Mascota ID: " + mascotaId);
+        if (userId <= 0) {
+            Toast.makeText(context, "Debes iniciar sesión para añadir favoritos.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        AdopcionApiService service = ApiCliente.getApiService();
+        service.toggleFavorite(userId, mascotaId).enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<BaseResponse> call, @NonNull Response<BaseResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    BaseResponse body = response.body();
+                    if (body.isSuccess()) {
+                        String estado = body.getMensaje();
+                        Toast.makeText(context, "Favorito: " + estado, Toast.LENGTH_SHORT).show();
+
+
+                        if ("Agregado".equals(estado)) {
+
+                            heartIcon.setImageResource(R.drawable.ic_heart_filled);
+                            heartIcon.setColorFilter(ContextCompat.getColor(context, android.R.color.holo_red_dark));
+                        } else {
+                            // Cambiar a corazón vacío (blanco)
+                            heartIcon.setImageResource(R.drawable.ic_heart_outline);
+                            heartIcon.setColorFilter(ContextCompat.getColor(context, android.R.color.white));
+                        }
+                    } else {
+                        Toast.makeText(context, "Error al actualizar favorito: " + body.getMensaje(), Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(context, "Fallo en el servidor al añadir favorito.", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<BaseResponse> call, @NonNull Throwable t) {
+                Log.e("FAVORITOS_API", "Error de red: " + t.getMessage());
+                Toast.makeText(context, "Error de red al intentar añadir favorito.", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public static class MascotaViewHolder extends RecyclerView.ViewHolder {
@@ -82,6 +142,7 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
 
         public MascotaViewHolder(@NonNull View itemView) {
             super(itemView);
+            // Referencias a las vistas en list_item_mascota.xml
             imgMascotaFoto = itemView.findViewById(R.id.img_mascota_foto);
             tvMascotaNombre = itemView.findViewById(R.id.tv_mascota_nombre);
             tvMascotaRazaEdad = itemView.findViewById(R.id.tv_mascota_raza_edad);
@@ -95,11 +156,11 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
             tvMascotaRazaEdad.setText("Raza: " + mascota.getRaza() + " | Edad: " + mascota.getEdad());
             tvMascotaUbicacionRefugio.setText("Refugio: " + mascota.getNombreRefugio() + " | Ubicación: " + mascota.getUbicacion());
 
-            // --- LÓGICA DE DECODIFICACIÓN DE IMAGEN (Revisión Final) ---
+            // Decodificación y Placeholder
             String base64Image = mascota.getFotoPrincipalBase64();
-
             if (base64Image != null && !base64Image.isEmpty()) {
                 try {
+                    // Lógica de decodificación Base64
                     String cleanBase64 = base64Image.replaceAll("data:image/\\w+;base64,", "").replaceAll("\\s", "");
                     byte[] imageBytes = Base64.decode(cleanBase64, Base64.NO_WRAP);
                     Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
@@ -109,9 +170,8 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
                     } else {
                         imgMascotaFoto.setImageResource(R.drawable.ic_placeholder_error);
                     }
-
                 } catch (Exception e) {
-                    Log.e("MascotaAdapter", "Error al decodificar Base64: " + e.getMessage());
+                    Log.e("ADAPTER_IMAGE", "Error al decodificar Base64: " + e.getMessage());
                     imgMascotaFoto.setImageResource(R.drawable.ic_placeholder_error);
                 }
             } else {
