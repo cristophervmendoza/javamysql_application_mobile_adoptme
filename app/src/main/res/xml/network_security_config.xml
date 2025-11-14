@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-    <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">adoptme.atwebpages.com</domain>
+    <domain-config>
+
+        <domain includeSubdomains="true">adoptme-backendphp-emfwe5fbg5f8gpc6.chilecentral-01.azurewebsites.net</domain>
     </domain-config>
+
+    <domain-config cleartextTrafficPermitted="true">
+
+        <domain includeSubdomains="true">10.0.2.2</domain>
+    </domain-config>
+
 </network-security-config>

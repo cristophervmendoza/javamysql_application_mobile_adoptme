@@ -17,6 +17,8 @@ import androidx.fragment.app.Fragment;
 import com.example.javamysql_application_mobile_adoptme.Auth.login.AuthActivity;
 import com.example.javamysql_application_mobile_adoptme.R;
 import com.example.javamysql_application_mobile_adoptme.View.UsersActivity;
+// IMPORTACIÓN CLAVE PARA CARGAR EL CATÁLOGO
+import com.example.javamysql_application_mobile_adoptme.View.ui.catalogo.CatalogoFragment;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
@@ -30,7 +32,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import android.content.SharedPreferences;
 import android.util.Log;
-
 
 
 public class LoginFragment extends Fragment {
@@ -50,6 +51,7 @@ public class LoginFragment extends Fragment {
         registerLink = view.findViewById(R.id.register_link);
         forgotPassword = view.findViewById(R.id.forgot_password);
 
+        // Al hacer clic en Login, se inicia la conexión a la API
         btnLogin.setOnClickListener(v -> loginUser());
 
 
@@ -70,30 +72,6 @@ public class LoginFragment extends Fragment {
 
         return view;
     }
-
-    // Login local de prueba (admin@adoptme.com - 123456)
-    /*private void loginUser1() {
-        String correo = emailInput.getText().toString().trim();
-        String contrasena = passwordInput.getText().toString().trim();
-
-        if (correo.isEmpty() || contrasena.isEmpty()) {
-            Toast.makeText(getContext(), "Completa todos los campos", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String correoValido = "admin@adoptme.com";
-        String contrasenaValida = "123456";
-
-        if (correo.equals(correoValido) && contrasena.equals(contrasenaValida)) {
-            Toast.makeText(getContext(), "Bienvenido a AdoptMe 🐾", Toast.LENGTH_LONG).show();
-
-            Intent intent = new Intent(getActivity(), UsersActivity.class);
-            startActivity(intent);
-            requireActivity().finish();
-        } else {
-            Toast.makeText(getContext(), "❌ Credenciales incorrectas", Toast.LENGTH_LONG).show();
-        }
-    }*/
 
 
     private void loginUser() {
@@ -140,6 +118,7 @@ public class LoginFragment extends Fragment {
 
                         if (json.has("success") && json.getBoolean("success")) {
 
+                            // Lógica de sesión (SharedPreferences)
                             JSONObject usuario = json.getJSONObject("usuario");
                             SharedPreferences prefs = requireActivity().getSharedPreferences("UserSession", getContext().MODE_PRIVATE);
                             SharedPreferences.Editor editor = prefs.edit();
@@ -155,9 +134,15 @@ public class LoginFragment extends Fragment {
 
                             limpiarCampos();
 
-                            Intent intent = new Intent(getActivity(), UsersActivity.class);
-                            startActivity(intent);
-                            requireActivity().finish();
+
+                            if (getActivity() instanceof AuthActivity) {
+
+
+                                Intent intent = new Intent(getActivity(), UsersActivity.class);
+                                startActivity(intent);
+                                requireActivity().finish();
+                            }
+
 
                         } else {
                             String errorMsg = json.optString("error", "❌ Credenciales incorrectas");

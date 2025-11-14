@@ -64,6 +64,18 @@
         android:name="com.example.javamysql_application_mobile_adoptme.View.ui.account.MapaFragment"
         android:label="@string/title_mapa"
         tools:layout="@layout/fragment_mapa" />
+    <fragment
+        android:id="@+id/navigation_catalogo"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.catalogo.CatalogoFragment"
+        android:label="Catálogo"
+        tools:layout="@layout/fragment_catalogo" />
+    <fragment
+        android:id="@+id/navigation_mascota_detalle"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.detalle.MascotaDetalleFragment"
+        android:label="Detalles de Mascota"
+        tools:layout="@layout/fragment_mascota_detalle" />
+
+
 
 
 

@@ -80,5 +80,6 @@ ForceTheme.setDarkMode();
         });
 
         logo.startAnimation(splashAnimation);
+
     }
 }

@@ -18,6 +18,8 @@
         android:theme="@style/Theme.Javamysql_application_mobile_adoptme"
         android:usesCleartextTraffic="true">
 
+
+
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 

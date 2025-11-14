@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.javamysql_application_mobile_adoptme.Auth.login.ui.StartUpFragment;
 import com.example.javamysql_application_mobile_adoptme.R;
 
+
 public class AuthActivity extends AppCompatActivity {
 
     @Override
