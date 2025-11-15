@@ -45,9 +45,7 @@ public class FavoritePetAdapter extends RecyclerView.Adapter<FavoritePetAdapter.
         return listaFavoritos != null ? listaFavoritos.size() : 0;
     }
 
-    // ======================================
-    //          VIEW HOLDER
-    // ======================================
+
     public static class FavoriteViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgPet;

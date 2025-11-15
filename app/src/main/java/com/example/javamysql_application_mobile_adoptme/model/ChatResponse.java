@@ -1,26 +1,22 @@
 package com.example.javamysql_application_mobile_adoptme.model;
 
-import com.google.gson.annotations.SerializedName;
+import java.util.List;
 
+public class ChatResponse {
 
-public class BaseResponse {
-
-
-
-    @SerializedName("success")
     private boolean success;
-
-    @SerializedName("mensaje")
+    private List<ChatMessage> data;
     private String mensaje;
 
-    // Getters
     public boolean isSuccess() {
         return success;
+    }
+
+    public List<ChatMessage> getData() {
+        return data;
     }
 
     public String getMensaje() {
         return mensaje;
     }
-
-
 }

@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.content.SharedPreferences;
+import android.content.Context;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,7 +32,7 @@ public class FavoriteFragment extends Fragment {
 
     private RecyclerView recyclerFavorites;
     private LinearLayout emptyState;
-    private int userId = 24;
+    /*private int userId = 24;
 
     @Nullable
     @Override
@@ -41,6 +44,35 @@ public class FavoriteFragment extends Fragment {
 
         recyclerFavorites = view.findViewById(R.id.recycler_favorites);
         emptyState = view.findViewById(R.id.empty_state);
+
+        recyclerFavorites.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
+        cargarFavoritos();
+
+        return view;
+    }*/
+    private int userId;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_favorites, container, false);
+
+        recyclerFavorites = view.findViewById(R.id.recycler_favorites);
+        emptyState = view.findViewById(R.id.empty_state);
+
+
+        SharedPreferences prefs = getActivity().getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+        userId = prefs.getInt("id_usuario", -1);
+
+        if (userId == -1) {
+            Toast.makeText(getContext(), "Error: Usuario no identificado", Toast.LENGTH_SHORT).show();
+            return view;
+        }
+
 
         recyclerFavorites.setLayoutManager(new GridLayoutManager(getContext(), 2));
 

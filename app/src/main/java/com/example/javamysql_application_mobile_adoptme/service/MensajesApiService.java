@@ -1,37 +1,18 @@
 package com.example.javamysql_application_mobile_adoptme.service;
 
-import com.example.javamysql_application_mobile_adoptme.model.CatalogoRespuesta;
 import com.example.javamysql_application_mobile_adoptme.model.BaseResponse;
 import com.example.javamysql_application_mobile_adoptme.model.ChatResponse;
-import com.example.javamysql_application_mobile_adoptme.model.FavoriteResponse;
 
 import retrofit2.Call;
-import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
-public interface AdopcionApiService {
+public interface MensajesApiService {
 
 
-    @GET("api_mascotas.php")
-    Call<CatalogoRespuesta> getCatalogoMascotas();
-
-    @FormUrlEncoded
-    @POST("toggle_favorito.php")
-    Call<BaseResponse> toggleFavorite(
-            @Field("id_usuario") int userId,
-            @Field("id_mascota") int mascotaId
-    );
-
-    @FormUrlEncoded
-    @POST("listar_favoritos.php")
-    Call<FavoriteResponse> listarFavoritos(
-            @Field("id_usuario") int userId
-    );
-
-    // Dentro de MensajesApiService.java (Problema)
     @FormUrlEncoded
     @POST("enviar_mensaje.php")
     Call<BaseResponse> enviarMensaje(
@@ -44,9 +25,6 @@ public interface AdopcionApiService {
     Call<ChatResponse> obtenerChat(
             @Query("user") int user
     );
-
-
-
 
 
 }
