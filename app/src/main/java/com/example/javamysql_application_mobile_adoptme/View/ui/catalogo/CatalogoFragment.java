@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
@@ -34,10 +35,9 @@ public class CatalogoFragment extends Fragment implements MascotaAdapter.OnMasco
     private static final String TAG = "CATALOGO_FRAG";
     private RecyclerView recyclerView;
     private MascotaAdapter adapter;
-    private int currentUserId = -1; // Almacenará el ID del usuario logueado
-
+    private int currentUserId = -1;
     public CatalogoFragment() {
-        // Constructor público vacío requerido
+
     }
 
     @Override
@@ -60,7 +60,8 @@ public class CatalogoFragment extends Fragment implements MascotaAdapter.OnMasco
 
         adapter = new MascotaAdapter(getContext(), new ArrayList<>(), this, currentUserId);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
         recyclerView.setAdapter(adapter);
 
 

@@ -28,9 +28,10 @@
         tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/navigation_favorites"
-        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.favorites.FavoritesFragment"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.favorites.FavoriteFragment"
         android:label="@string/title_favorites"
         tools:layout="@layout/fragment_favorites" />
+
     <fragment
         android:id="@+id/accountProfileFragment"
         android:name="com.example.javamysql_application_mobile_adoptme.View.ui.account.AccountProfileFragment"

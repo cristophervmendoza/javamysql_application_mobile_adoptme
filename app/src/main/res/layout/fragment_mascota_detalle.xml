@@ -1,17 +1,19 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="#FAFAFA"
     tools:context=".View.ui.detalle.MascotaDetalleFragment">
 
+    <!-- APP BAR + IMAGEN -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:liftOnScroll="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -19,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:titleEnabled="false">
 
             <ImageView
@@ -27,8 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_placeholder_default"
-                android:contentDescription="Foto de la mascota"
+                android:background="#DADADA"
                 app:layout_collapseMode="parallax" />
 
             <androidx.appcompat.widget.Toolbar
@@ -40,6 +40,7 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!-- CONTENIDO SCROLLABLE -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,117 +50,122 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="20dp">
 
-            <!-- Nombre de la Mascota -->
+            <!-- Nombre Mascota -->
             <TextView
                 android:id="@+id/tv_detalle_nombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="32sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/black"
+                android:textColor="#222"
+                android:letterSpacing="0.02"
+                android:paddingBottom="6dp"
                 tools:text="Luna" />
 
             <TextView
                 android:id="@+id/tv_detalle_especie_raza"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="18sp"
-                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textColor="#444"
                 tools:text="Especie: Perro | Raza: Mestizo" />
 
             <TextView
                 android:id="@+id/tv_detalle_edad_tamano_sexo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="16sp"
-                android:textColor="#555555"
+                android:textSize="15sp"
+                android:layout_marginTop="6dp"
+                android:textColor="#555"
                 tools:text="Edad: 2 años | Tamaño: Pequeño | Sexo: Hembra" />
 
             <TextView
                 android:id="@+id/tv_detalle_salud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="16sp"
-                android:textColor="#555555"
-                tools:text="Salud: Vacunado" />
+                android:textSize="15sp"
+                android:layout_marginTop="6dp"
+                android:textColor="#555"
+                tools:text="Salud: Vacunado y Desparasitado" />
 
             <TextView
                 android:id="@+id/tv_detalle_ubicacion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="16sp"
-                android:textColor="#555555"
+                android:textSize="15sp"
+                android:layout_marginTop="6dp"
+                android:textColor="#555"
                 tools:text="Ubicación: San Gabriel, Comas" />
 
-            <!-- Historia -->
+
+            <!-- HISTORIA -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Historia:"
+                android:text="Historia"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="#222" />
 
             <TextView
                 android:id="@+id/tv_detalle_historia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textSize="16sp"
-                android:background="#F5F5F5"
-                android:padding="12dp"
-                android:textColor="@android:color/black"
-                tools:text="Luna fue encontrada en una noche lluviosa, temblando bajo un puente. A pesar de su difícil pasado, esta hermosa perrita ha demostrado tener un corazón lleno de amor y perdón." />
+                android:layout_marginTop="10dp"
+                android:padding="14dp"
+                android:textSize="15sp"
+                android:lineSpacingExtra="4dp"
+                android:background="#F1F1F1"
+                android:textColor="#333"
+                android:elevation="2dp"
+                app:cardCornerRadius="12dp"
+                tools:text="Historia de la mascota aquí." />
 
 
+            <!-- REQUISITOS -->
             <TextView
                 android:id="@+id/tvDetalleRequisitos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Requisitos de Adopción:"
+                android:text="Requisitos de Adopción"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="#222" />
 
             <TextView
                 android:id="@+id/tv_detalle_requisitos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textSize="16sp"
-                android:background="#F5F5F5"
-                android:padding="12dp"
-                android:textColor="@android:color/black"
-                tools:text="Ser mayor de 21 años, contar con DNI vigente, tener vivienda estable y disponibilidad de tiempo para cuidar a la mascota." />
+                android:layout_marginTop="10dp"
+                android:padding="14dp"
+                android:textSize="15sp"
+                android:lineSpacingExtra="4dp"
+                android:background="#F1F1F1"
+                android:textColor="#333"
+                android:elevation="2dp"
+                app:cardCornerRadius="12dp"
+                tools:text="Requisitos aquí." />
 
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="64dp" />
+                android:layout_height="100dp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
 
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btn_solicitar_adopcion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-
-        android:layout_marginEnd="16dp"
+        android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="100dp"
-
-        app:layout_collapseMode="parallax"
-
         android:text="Adoptar Ahora"
         android:textAllCaps="false"
         android:textColor="@android:color/white"

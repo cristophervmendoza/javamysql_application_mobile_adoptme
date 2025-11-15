@@ -142,7 +142,7 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
 
         public MascotaViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Referencias a las vistas en list_item_mascota.xml
+
             imgMascotaFoto = itemView.findViewById(R.id.img_mascota_foto);
             tvMascotaNombre = itemView.findViewById(R.id.tv_mascota_nombre);
             tvMascotaRazaEdad = itemView.findViewById(R.id.tv_mascota_raza_edad);

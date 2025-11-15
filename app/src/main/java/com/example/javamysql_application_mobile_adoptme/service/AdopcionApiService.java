@@ -2,6 +2,8 @@ package com.example.javamysql_application_mobile_adoptme.service;
 
 import com.example.javamysql_application_mobile_adoptme.model.CatalogoRespuesta;
 import com.example.javamysql_application_mobile_adoptme.model.BaseResponse;
+import com.example.javamysql_application_mobile_adoptme.model.FavoriteResponse;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -17,11 +19,17 @@ public interface AdopcionApiService {
 
     @FormUrlEncoded
     @POST("toggle_favorito.php")
-    Call<BaseResponse> toggleFavorite(@Field("id_usuario") int userId, @Field("id_mascota") int mascotaId);
+    Call<BaseResponse> toggleFavorite(
+            @Field("id_usuario") int userId,
+            @Field("id_mascota") int mascotaId
+    );
 
+    @FormUrlEncoded
+    @POST("listar_favoritos.php")
+    Call<FavoriteResponse> listarFavoritos(
+            @Field("id_usuario") int userId
+    );
 
-    @GET("listar_favoritos.php")
-    Call<CatalogoRespuesta> getFavoriteMascotas(@Query("id_usuario") int userId);
 
 
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Imagen -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:id="@+id/img_pet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="#E0E0E0" />
+
+            <ImageButton
+                android:id="@+id/btn_favorite"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end|top"
+                android:layout_margin="8dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_heart_filled"
+                app:tint="@android:color/holo_red_dark"/>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_pet_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:textColor="#000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingStart="12dp"
+            android:paddingTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_pet_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edad"
+            android:textColor="#555"
+            android:textSize="14sp"
+            android:paddingStart="12dp"
+            android:paddingBottom="12dp"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
