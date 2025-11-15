@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,12 +51,24 @@ public class MessagesFragment extends Fragment {
 
         recyclerMessages.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        idUsuarioLogeado = getUserSession();   // ← YA FUNCIONA BIEN
+        idUsuarioLogeado = getUserSession();
+
+
+        Button btnNuevoMensaje = view.findViewById(R.id.btnNuevoMensaje);
+        btnNuevoMensaje.setOnClickListener(v -> {
+            Bundle args = new Bundle();
+            args.putInt("idEmisor", idUsuarioLogeado);
+            args.putInt("idReceptor", 1);
+            Navigation.findNavController(requireView())
+                    .navigate(R.id.action_messages_to_chat, args);
+        });
+
 
         cargarConversaciones();
 
         return view;
     }
+
 
     private int getUserSession() {
         SharedPreferences prefs = requireActivity()
