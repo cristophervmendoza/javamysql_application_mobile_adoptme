@@ -16,6 +16,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import com.example.javamysql_application_mobile_adoptme.R;
 import com.example.javamysql_application_mobile_adoptme.model.MascotaEntidad;
 
@@ -52,7 +55,7 @@ public class MascotaDetalleFragment extends Fragment {
             TextView tvDetalleRequisitos = view.findViewById(R.id.tv_detalle_requisitos);
             Button btnAdoptar = view.findViewById(R.id.btn_solicitar_adopcion);
 
-            // Asignación de Datos
+
             tvDetalleNombre.setText(mascota.getNombre());
             tvDetalleEspecieRaza.setText("Especie: " + mascota.getEspecie() + " | Raza: " + mascota.getRaza());
             tvDetalleEdadTamanoSexo.setText("Edad: " + mascota.getEdad() + " | Tamaño: " + mascota.getTamano() + " | Sexo: " + mascota.getSexo());
@@ -80,9 +83,13 @@ public class MascotaDetalleFragment extends Fragment {
 
 
             btnAdoptar.setOnClickListener(v -> {
-                Toast.makeText(getContext(), "Solicitando adopción para " + mascota.getNombre() + "...", Toast.LENGTH_SHORT).show();
-                // TODO: Implementar la llamada a la API de Solicitud de Adopción aquí.
+                NavController navController =
+                        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_users);
+
+                navController.navigate(R.id.solicitudPaso1Fragment);
             });
+
+
 
         } else {
             Toast.makeText(getContext(), "Error: No se pudo cargar la mascota.", Toast.LENGTH_LONG).show();

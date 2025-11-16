@@ -281,13 +281,13 @@ public class RegisterFragment extends Fragment {
                 conn.setConnectTimeout(10000);
                 conn.setReadTimeout(10000);
 
-                // Enviar datos al servidor
+
                 try (OutputStream os = conn.getOutputStream()) {
                     os.write(postData.getBytes());
                     os.flush();
                 }
 
-                // Leer respuesta del servidor
+
                 BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 StringBuilder response = new StringBuilder();
                 String line;

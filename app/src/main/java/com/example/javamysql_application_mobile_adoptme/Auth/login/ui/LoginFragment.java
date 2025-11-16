@@ -51,7 +51,7 @@ public class LoginFragment extends Fragment {
         registerLink = view.findViewById(R.id.register_link);
         forgotPassword = view.findViewById(R.id.forgot_password);
 
-        // Al hacer clic en Login, se inicia la conexión a la API
+
         btnLogin.setOnClickListener(v -> loginUser());
 
 
@@ -85,7 +85,7 @@ public class LoginFragment extends Fragment {
 
         new Thread(() -> {
             try {
-                URL url = new URL("https://adoptme-backendphp-emfwe5fbg5f8gpc6.chilecentral-01.azurewebsites.net/login.php");
+                URL url = new URL("https://adoptme-backendphp-emfwe5fbg5f8gpc6.chilecentral-01.azurewebsites.net/iniciar_sesion.php");
                 String postData = "correo=" + URLEncoder.encode(correo, "UTF-8") +
                         "&contrasena=" + URLEncoder.encode(contrasena, "UTF-8");
 

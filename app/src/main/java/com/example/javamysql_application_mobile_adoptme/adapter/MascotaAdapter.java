@@ -156,11 +156,11 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
             tvMascotaRazaEdad.setText("Raza: " + mascota.getRaza() + " | Edad: " + mascota.getEdad());
             tvMascotaUbicacionRefugio.setText("Refugio: " + mascota.getNombreRefugio() + " | Ubicación: " + mascota.getUbicacion());
 
-            // Decodificación y Placeholder
+
             String base64Image = mascota.getFotoPrincipalBase64();
             if (base64Image != null && !base64Image.isEmpty()) {
                 try {
-                    // Lógica de decodificación Base64
+
                     String cleanBase64 = base64Image.replaceAll("data:image/\\w+;base64,", "").replaceAll("\\s", "");
                     byte[] imageBytes = Base64.decode(cleanBase64, Base64.NO_WRAP);
                     Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);

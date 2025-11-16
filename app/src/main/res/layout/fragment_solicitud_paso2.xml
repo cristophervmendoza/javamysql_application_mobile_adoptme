@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F8F9FA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Título del paso -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Solicitud de adopción"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#1A202C"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Información del hogar"
+            android:textSize="16sp"
+            android:textColor="#718096"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de vivienda*"
+            android:textSize="14sp"
+            android:textColor="#A0AEC0"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Situación de la vivienda -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Situación de la vivienda*"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#2D3748"
+            android:layout_marginBottom="12dp" />
+
+        <RadioGroup
+            android:id="@+id/rg_tipo_vivienda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+
+            <RadioButton
+                android:id="@+id/rb_propia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Casa propia"
+                android:textSize="15sp"
+                android:padding="12dp"
+                android:textColor="#1A202C" />
+
+            <RadioButton
+                android:id="@+id/rb_alquilada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Casa alquilada"
+                android:textSize="15sp"
+                android:padding="12dp"
+                android:textColor="#1A202C" />
+
+            <RadioButton
+                android:id="@+id/rb_familiar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Casa de familiar"
+                android:textSize="15sp"
+                android:padding="12dp"
+                android:textColor="#1A202C" />
+        </RadioGroup>
+
+
+        <!-- Composición familiar -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Composición familiar"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#2D3748"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Miembros de la familia*"
+            android:textSize="13sp"
+            android:textColor="#718096"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:hint="Describe tu composición familiar"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#2D3748"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
+            app:hintTextColor="@color/black"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_composicion_familiar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="3"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:textColor="#1A202C"
+                android:textColorHint="#6E6E6E"
+                android:textSize="15sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!-- ¿Hay niños en el hogar? -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Hay niños en el hogar?*"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#2D3748"
+            android:layout_marginBottom="12dp" />
+
+        <RadioGroup
+            android:id="@+id/rg_ninos_hogar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+
+            <RadioButton
+                android:id="@+id/rb_si_ninos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sí"
+                android:textColor="#1A202C"
+                android:textSize="15sp"
+                android:padding="12dp" />
+
+            <RadioButton
+                android:id="@+id/rb_no_ninos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:textColor="#1A202C"
+                android:textSize="15sp"
+                android:padding="12dp" />
+        </RadioGroup>
+
+
+        <!-- ¿Algún miembro tiene alergia? -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Algún miembro de la familia tiene alergia a los animales?*"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#2D3748"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:hint="Especifica si hay alergias"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#2D3748"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
+            app:hintTextColor="@color/black"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_alergias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="#1A202C"
+                android:textColorHint="#6E6E6E"
+                android:textSize="15sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!-- Botones -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/btn_anterior"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:text="Anterior"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:paddingHorizontal="32dp"
+                app:cornerRadius="10dp" />
+
+            <Button
+                android:id="@+id/btn_siguiente"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:text="Siguiente"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:paddingHorizontal="32dp"
+                android:backgroundTint="#C084FC"
+                android:textColor="@color/white"
+                app:cornerRadius="10dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

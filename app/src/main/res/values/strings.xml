@@ -23,4 +23,6 @@
     <string name="title_mapa">Mapa de refugio</string>
     <string name="Titulo_mapa">Mapa de refugios</string>
     <string name="Refugios_cercanos">Refugios cercanos</string>
+    <string name="info">info</string>
+    <string name="foto_mascota">foto_mascota\n</string>
 </resources>

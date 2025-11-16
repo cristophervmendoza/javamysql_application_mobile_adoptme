@@ -90,6 +90,71 @@
         android:label="Detalles de Mascota"
         tools:layout="@layout/fragment_mascota_detalle" />
 
+    <!-- PASO 1 -->
+    <fragment
+        android:id="@+id/solicitudPaso1Fragment"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.solicitud.solicitud_paso1Fragment"
+        android:label="SolicitudPaso1Fragment"
+        tools:layout="@layout/fragment_solicitud_paso1">
+        <action
+            android:id="@+id/action_paso1_to_paso2"
+            app:destination="@id/solicitudPaso2Fragment" />
+    </fragment>
+
+    <!-- PASO 2 -->
+    <fragment
+        android:id="@+id/solicitudPaso2Fragment"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.solicitud.solicitud_paso2Fragment"
+        android:label="SolicitudPaso2Fragment"
+        tools:layout="@layout/fragment_solicitud_paso2">
+        <action
+            android:id="@+id/action_paso2_to_paso3"
+            app:destination="@id/solicitudPaso3Fragment" />
+        <action
+            android:id="@+id/action_paso2_to_paso1"
+            app:destination="@id/solicitudPaso1Fragment" />
+    </fragment>
+
+    <!-- PASO 3 -->
+    <fragment
+        android:id="@+id/solicitudPaso3Fragment"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.solicitud.solicitud_paso3Fragment"
+        android:label="SolicitudPaso3Fragment"
+        tools:layout="@layout/fragment_solicitud_paso3">
+        <action
+            android:id="@+id/action_paso3_to_paso4"
+            app:destination="@id/solicitudPaso4Fragment" />
+        <action
+            android:id="@+id/action_paso3_to_paso2"
+            app:destination="@id/solicitudPaso2Fragment" />
+    </fragment>
+
+    <!-- PASO 4 -->
+    <fragment
+        android:id="@+id/solicitudPaso4Fragment"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.solicitud.solicitud_paso4Fragment"
+        android:label="SolicitudPaso4Fragment"
+        tools:layout="@layout/fragment_solicitud_paso4">
+        <action
+            android:id="@+id/action_paso4_to_paso5"
+            app:destination="@id/solicitudPaso5Fragment" />
+        <action
+            android:id="@+id/action_paso4_to_paso3"
+            app:destination="@id/solicitudPaso3Fragment" />
+    </fragment>
+
+    <!-- PASO 5 -->
+    <fragment
+        android:id="@+id/solicitudPaso5Fragment"
+        android:name="com.example.javamysql_application_mobile_adoptme.View.ui.solicitud.solicitud_paso5Fragment"
+        android:label="SolicitudPaso5Fragment"
+        tools:layout="@layout/fragment_solicitud_paso5">
+        <action
+            android:id="@+id/action_paso5_to_paso4"
+            app:destination="@id/solicitudPaso4Fragment" />
+    </fragment>
+
+
 
 
 
